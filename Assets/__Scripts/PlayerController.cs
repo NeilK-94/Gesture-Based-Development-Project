@@ -19,11 +19,13 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
 
     private Rigidbody rb;
+    private AudioSource bulletClip;
     private float nextFire;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        bulletClip = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -33,7 +35,7 @@ public class PlayerController : MonoBehaviour
             nextFire = Time.time + fireRate;
             Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
 
-            //nextFire = nextFire - Time.time;
+            bulletClip.Play();
         }
     }
 

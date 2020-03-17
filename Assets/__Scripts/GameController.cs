@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -8,14 +10,36 @@ public class GameController : MonoBehaviour
     public GameObject hazard;
     public int hazardCount;
     public Vector3 spawnValues;
-
     public float spawnDelay;
     public float startDelay;
     public float waveDelay;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI restartText;
+
+    private bool gameOver;
+    private bool restart;
+    private int score;
+    private Scene currentScene;
+
     private void Start()
     {
-       StartCoroutine(SpawnWaves());
+        gameOver = false;
+        restart = false;
+
+        //  Make text blank until needed
+        restartText.text = "";
+        gameOverText.text = "";
+        score = 0;
+        UpdateScore();
+        StartCoroutine(SpawnWaves());
     }
+
+    private void Update()
+    {
+        Restart();
+    }
+
     IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startDelay);
@@ -30,6 +54,41 @@ public class GameController : MonoBehaviour
             }
             yield return new WaitForSeconds(waveDelay);
 
+            if(gameOver)
+            {
+                restartText.text = "Press 'R' to restart";
+                restart = true;
+                break;
+            }
         }
+    }
+
+    //  Update score on screen
+    void UpdateScore()
+    {
+        scoreText.text = "Score: " + score;
+    }
+    public void AddScore(int newScoreValue)
+    {
+        score += newScoreValue;
+        UpdateScore();
+    }
+    public void GameOver()
+    {
+        gameOverText.text = "Game Over!";
+        gameOver = true;
+    }
+    public void Restart()
+    {   //  If restart is true
+        if (restart)
+        {
+            currentScene = SceneManager.GetActiveScene();   //  Sets current scene equal to the active scene
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(currentScene.name);  //  loads currentScene
+                //Debug.Log(currentScene.name);
+            }
+        }
+        
     }
 }
