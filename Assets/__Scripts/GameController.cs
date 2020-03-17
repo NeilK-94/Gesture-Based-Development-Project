@@ -83,7 +83,7 @@ public class GameController : MonoBehaviour
         if (restart)
         {
             currentScene = SceneManager.GetActiveScene();   //  Sets current scene equal to the active scene
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R))    //  Will switch to myo pose
             {
                 SceneManager.LoadScene(currentScene.name);  //  loads currentScene
                 //Debug.Log(currentScene.name);
