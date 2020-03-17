@@ -67,8 +67,8 @@ public class PlayerController : MonoBehaviour
         */
 
         //  Just like keyboard input except this time we set it to the myoArmband's current transform position
-        float myoMoveHorizontal = myoArmband.transform.position.x;
-        float myoMoveVertical = myoArmband.transform.position.y;
+        float myoMoveHorizontal = myoArmband.transform.forward.x;
+        float myoMoveVertical = myoArmband.transform.forward.y;
 
         //  Store these in a Vector3, together, with the y axis value always at zero we can manipulate the player's position
         Vector3 myoMovement = new Vector3(myoMoveHorizontal, 0.0f, myoMoveVertical);
