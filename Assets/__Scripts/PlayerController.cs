@@ -40,16 +40,9 @@ public class PlayerController : MonoBehaviour
 
     //  Update should be used for input
     private void Update()
-    {   //  Fire1 will be MYO etc. Make his a shoot method later
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-
-            bulletClip.Play();
-        }
+    {
+        Shoot();
     }
-
     //  FixedUpdate should be used for physics.
     void FixedUpdate()
     {
@@ -58,14 +51,14 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        /*
+        //  Keyboard controls
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed;
-        */
-
+     //////////////////////////////////////////////////////////////////////////////////
+        //  Myo controls
         //  Just like keyboard input except this time we set it to the myoArmband's current transform position
         float myoMoveHorizontal = myoArmband.transform.forward.x;
         float myoMoveVertical = myoArmband.transform.forward.y;
@@ -84,5 +77,24 @@ public class PlayerController : MonoBehaviour
 
         //  Rotate the ship when turning
         rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
+    }
+
+    private void Shoot()
+    {
+        if(myoArmband.pose == Pose.Fist && Time.time > nextFire)
+        {
+            Debug.Log("FIST BUMP!");
+            nextFire = Time.time + fireRate;
+            Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+
+            bulletClip.Play();
+        }
+        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
+
+            bulletClip.Play();
+        }
     }
 }
