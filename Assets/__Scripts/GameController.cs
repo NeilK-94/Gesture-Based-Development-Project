@@ -9,7 +9,7 @@ using Pose = Thalmic.Myo.Pose;
 public class GameController : MonoBehaviour
 {
     //  Asteroids
-    public GameObject hazard;
+    public GameObject[] hazards;
     public int hazardCount;
     public Vector3 spawnValues;
     public float spawnDelay;
@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
+        GameObject hazard = hazards[Random.Range(0, hazards.Length)];
         yield return new WaitForSeconds(startDelay);
         while (true) {
             for (int i = 0; i < hazardCount; i++) {
