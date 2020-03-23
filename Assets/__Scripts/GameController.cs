@@ -20,7 +20,8 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI restartText;
     public GameObject myo = null;   //  The MYO Hub
 
-    private ThalmicMyo myoArmband;
+    public ThalmicHub hub;
+    private static ThalmicMyo myoArmband;
     private bool gameOver;
     private bool restart;
     private int score;

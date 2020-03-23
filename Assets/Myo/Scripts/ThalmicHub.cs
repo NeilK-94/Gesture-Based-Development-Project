@@ -64,6 +64,7 @@ public class ThalmicHub : MonoBehaviour
 
     void Awake ()
     {
+        /*
         // Ensure that there is only one ThalmicHub.
         if (_instance != null) {
 #if UNITY_EDITOR
@@ -80,7 +81,7 @@ public class ThalmicHub : MonoBehaviour
         // Do not destroy this game object. This will ensure that it remains active even when
         // switching scenes.
         DontDestroyOnLoad(this);
-
+        */
         for (int i = 0; i < transform.childCount; ++i) {
             Transform child = transform.GetChild (i);
 

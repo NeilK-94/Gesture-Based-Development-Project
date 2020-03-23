@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public Boundary boundary;
     public GameObject myo = null;   //  The MYO Hub
 
+
     private ThalmicMyo myoArmband;
     private Rigidbody rb;
     private Pose lastPose = Pose.Unknown;  //  Myo stores our poses. Set pose to Unknown initially.
@@ -33,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //myo = GameObject.FindGameObjectWithTag("Player");
+
         rb = GetComponent<Rigidbody>();
         bulletClip = GetComponent<AudioSource>();
         myoArmband = myo.GetComponent<ThalmicMyo>();
@@ -51,6 +54,11 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
+        if(myoArmband == null)
+        {
+            myoArmband = myo.GetComponent<ThalmicMyo>();
+
+        }
         /*
         //  Keyboard controls
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -58,8 +66,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed;
-        */ 
-    //////////////////////////////////////////////////////////////////////////////////
+        */
+        //////////////////////////////////////////////////////////////////////////////////
         //  Myo controls
         //  Just like keyboard input except this time we set it to the myoArmband's current transform position
         float myoMoveHorizontal = myoArmband.transform.forward.x;
