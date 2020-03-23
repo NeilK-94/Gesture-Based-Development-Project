@@ -6,7 +6,7 @@ public class DestroyByContact : MonoBehaviour
 {
     private GameObject gameControllerObject;
 
-    public GameObject asteroidExplosion;
+    public GameObject explosion;
     public GameObject playerExplosion;
     public int scoreValue;
     private GameController gameController;
@@ -23,13 +23,18 @@ public class DestroyByContact : MonoBehaviour
     //  When something enters this collider, destroy it 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Boundary")
+        //  Don't blow up if we hit the boundary
+        if(other.CompareTag ("Boundary") || other.CompareTag ("Enemy"))
         {
             return;
         }
-        //  Instantiate explosions
-        Instantiate(asteroidExplosion, transform.position, transform.rotation);
-        if(other.tag == "Player")
+
+        if (explosion != null)
+        {
+            //  Instantiate explosions
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
+        if(other.CompareTag("Player"))
         {
             Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
             gameController.GameOver();
