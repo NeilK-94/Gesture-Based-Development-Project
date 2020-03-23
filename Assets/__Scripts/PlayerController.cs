@@ -51,13 +51,15 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
+        /*
         //  Keyboard controls
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed;
-     //////////////////////////////////////////////////////////////////////////////////
+        */ 
+    //////////////////////////////////////////////////////////////////////////////////
         //  Myo controls
         //  Just like keyboard input except this time we set it to the myoArmband's current transform position
         float myoMoveHorizontal = myoArmband.transform.forward.x;
@@ -86,7 +88,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("FIST BUMP!");
             nextFire = Time.time + fireRate;
             Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-
+            lastPose = Pose.Fist;
             bulletClip.Play();
         }
         if (Input.GetButton("Fire1") && Time.time > nextFire)

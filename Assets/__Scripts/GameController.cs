@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Pose = Thalmic.Myo.Pose;
+
 
 public class GameController : MonoBehaviour
 {
@@ -16,7 +18,9 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI restartText;
+    public GameObject myo = null;   //  The MYO Hub
 
+    private ThalmicMyo myoArmband;
     private bool gameOver;
     private bool restart;
     private int score;
@@ -26,6 +30,9 @@ public class GameController : MonoBehaviour
     {
         gameOver = false;
         restart = false;
+
+        myoArmband = myo.GetComponent<ThalmicMyo>();
+
 
         //  Make text blank until needed
         restartText.text = "";
@@ -56,7 +63,7 @@ public class GameController : MonoBehaviour
 
             if(gameOver)
             {
-                restartText.text = "Press 'R' to restart";
+                restartText.text = "Double tap to restart";
                 restart = true;
                 break;
             }
@@ -83,7 +90,7 @@ public class GameController : MonoBehaviour
         if (restart)
         {
             currentScene = SceneManager.GetActiveScene();   //  Sets current scene equal to the active scene
-            if (Input.GetKeyDown(KeyCode.R))    //  Will switch to myo pose
+            if (myoArmband.pose == Pose.DoubleTap)
             {
                 SceneManager.LoadScene(currentScene.name);  //  loads currentScene
                 //Debug.Log(currentScene.name);
