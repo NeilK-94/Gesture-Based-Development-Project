@@ -8,7 +8,7 @@ using Pose = Thalmic.Myo.Pose;
 
 public class GameController : MonoBehaviour
 {
-    //  Asteroids
+    //  Asteroids and enemies
     public GameObject[] hazards;
     public int hazardCount;
     public Vector3 spawnValues;
@@ -50,10 +50,11 @@ public class GameController : MonoBehaviour
 
     IEnumerator SpawnWaves()
     {
-        GameObject hazard = hazards[Random.Range(0, hazards.Length)];
         yield return new WaitForSeconds(startDelay);
         while (true) {
             for (int i = 0; i < hazardCount; i++) {
+                GameObject hazard = hazards[Random.Range(0, hazards.Length)];
+
                 //  Set spawn position of asteroids to be a random range between specified values in the editor (length of screen)
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
@@ -70,6 +71,7 @@ public class GameController : MonoBehaviour
                 break;
             }
         }
+        hazardCount++;
     }
 
     //  Update score on screen

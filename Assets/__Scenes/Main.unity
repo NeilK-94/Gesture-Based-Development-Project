@@ -528,10 +528,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazards:
-  - {fileID: 55447852147438690, guid: 7f7a3f1be1d0ccb4b8af674c17a00ecd, type: 3}
-  - {fileID: 590509834269505741, guid: 06af648e588574c428e1c28ef340da0f, type: 3}
-  - {fileID: 5010609070994780462, guid: 65758a1b7ce2e5440a764f02c7372fbc, type: 3}
   - {fileID: 7845989782217671010, guid: 926e0e623239c5447bad06d030681572, type: 3}
+  - {fileID: 5010609070994780462, guid: 65758a1b7ce2e5440a764f02c7372fbc, type: 3}
+  - {fileID: 590509834269505741, guid: 06af648e588574c428e1c28ef340da0f, type: 3}
+  - {fileID: 55447852147438690, guid: 7f7a3f1be1d0ccb4b8af674c17a00ecd, type: 3}
   hazardCount: 12
   spawnValues: {x: 6, y: 0, z: 15}
   spawnDelay: 0.7
