@@ -4,10 +4,16 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Pose = Thalmic.Myo.Pose;
-
+using UnityEngine.Windows.Speech;
+using System;
+using System.Linq;
+using Random = UnityEngine.Random;
 
 public class GameController : MonoBehaviour
 {
+    private Dictionary<string, Action> keywordActions = new Dictionary<string, Action>();
+    private KeywordRecognizer keywordRecognizer;
+    
     //  Asteroids and enemies
     public GameObject[] hazards;
     public int hazardCount;
@@ -20,6 +26,7 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI restartText;
     public GameObject myo = null;   //  The MYO Hub
 
+
     public ThalmicHub hub;
     private static ThalmicMyo myoArmband;
     private bool gameOver;
@@ -29,11 +36,16 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        keywordActions.Add("restart", Restart);
+
+        keywordRecognizer = new KeywordRecognizer(keywordActions.Keys.ToArray());   //  Put keys into an array. Just restart as of now
+        keywordRecognizer.OnPhraseRecognized += OnKeywordsRecognized;
+        keywordRecognizer.Start();
+
         gameOver = false;
         restart = false;
 
         myoArmband = myo.GetComponent<ThalmicMyo>();
-
 
         //  Make text blank until needed
         restartText.text = "";
@@ -45,7 +57,13 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        Restart();
+        //Restart();
+    }
+
+    void OnKeywordsRecognized(PhraseRecognizedEventArgs args)
+    {
+        Debug.Log("Keyword: " + args.text);
+        keywordActions[args.text].Invoke();
     }
 
     IEnumerator SpawnWaves()
@@ -66,7 +84,7 @@ public class GameController : MonoBehaviour
 
             if(gameOver)
             {
-                restartText.text = "Double tap to restart";
+                restartText.text = "Say 'Restart' to go again!";
                 restart = true;
                 break;
             }
@@ -92,14 +110,10 @@ public class GameController : MonoBehaviour
     public void Restart()
     {   //  If restart is true
         if (restart)
-        {
+        { 
             currentScene = SceneManager.GetActiveScene();   //  Sets current scene equal to the active scene
-            if (myoArmband.pose == Pose.DoubleTap)
-            {
-                SceneManager.LoadScene(currentScene.name);  //  loads currentScene
-                //Debug.Log(currentScene.name);
-            }
+            SceneManager.LoadScene(currentScene.name);
         }
-        
+
     }
 }
