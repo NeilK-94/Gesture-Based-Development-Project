@@ -5,13 +5,14 @@ using UnityEngine.Windows.Speech;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 //  Myo dependencies
 using LockingPolicy = Thalmic.Myo.LockingPolicy;
 using Pose = Thalmic.Myo.Pose;
 using UnlockType = Thalmic.Myo.UnlockType;
 using VibrationType = Thalmic.Myo.VibrationType;
-using UnityEngine.Audio;
+
 
 public class MainMenu : MonoBehaviour
 {
@@ -21,13 +22,12 @@ public class MainMenu : MonoBehaviour
     public GameObject myo = null;   //  The MYO Hub
     private ThalmicMyo myoArmband;
     private Pose lastPose = Pose.Unknown;
-
     public AudioMixer soundTrack;
     public AudioMixer soundEffects;
 
     public static bool isMuted = false; //  Check to see if the audio is muted
     private float mute = -80f;
-    private float vol = 100f;
+    private float vol = 0;
 
 
     void Start()
@@ -43,23 +43,30 @@ public class MainMenu : MonoBehaviour
     }
     void Update()
     {
-        if (myoArmband == null)
+        if (myoArmband.pose != lastPose)
         {
-            myoArmband = myo.GetComponent<ThalmicMyo>();
+            lastPose = myoArmband.pose;
+
+            if (myoArmband.pose == Pose.FingersSpread)
+            {
+                //  Disable audio mixer
+                Debug.Log("Finger Spread");
+                lastPose = Pose.FingersSpread;
+                
+                MuteVolume();
+                ExtendUnlockAndNotifyUserAction(myoArmband);
+            }
+            else if (myoArmband.pose == Pose.WaveOut)
+            {
+                Debug.Log("wave out");
+                lastPose = Pose.WaveOut;
+
+                MuteAffects();
+                ExtendUnlockAndNotifyUserAction(myoArmband);
+            }
         }
 
-        if (myoArmband.pose == Pose.FingersSpread)
-        {
-            //  Disable audio mixer
-            Debug.Log("Finger Spread");
-            lastPose = Pose.FingersSpread;
-            MuteVolume();
-        }
-        else if(myoArmband.pose == Pose.DoubleTap)
-        {
-            Debug.Log("double tap");
-            lastPose = Pose.DoubleTap;
-        }
+        
     }
 
     void OnKeywordsRecognized(PhraseRecognizedEventArgs args)
@@ -89,13 +96,13 @@ public class MainMenu : MonoBehaviour
         }
         else
         {
-            soundTrack.SetFloat("music", 0);
+            soundTrack.SetFloat("music", vol);
             isMuted = false;
         }
         
     }
 
-    public void MuteAffects(float vol)
+    public void MuteAffects()
     {
         if (isMuted == false)    //  if the audio is not muted, mute it
         {
@@ -107,5 +114,17 @@ public class MainMenu : MonoBehaviour
             soundEffects.SetFloat("soundEffects", vol);
             isMuted = false;
         }
+    }
+
+    void ExtendUnlockAndNotifyUserAction(ThalmicMyo myo)
+    {
+        ThalmicHub hub = ThalmicHub.instance;
+
+        if (hub.lockingPolicy == LockingPolicy.Standard)
+        {
+            myo.Unlock(UnlockType.Timed);
+        }
+
+        myo.NotifyUserAction();
     }
 }
