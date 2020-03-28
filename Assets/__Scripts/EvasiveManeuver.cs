@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//  This script controls the enemy ships movement
 public class EvasiveManeuver : MonoBehaviour
 {
     public Vector2 startDelay;
@@ -44,7 +44,8 @@ public class EvasiveManeuver : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(startDelay.x, startDelay.y));
 
         while (true)
-        {
+        {   //  This basically stop the ships from maneuvering out of the screen. If on the left hal of screen
+            //  maneuver to the right, if on the right half, maneuver left.
             targetManeuver = Random.Range(1, dodge) * -Mathf.Sign(transform.position.x);    //  will return the opposite sign value to the x position
             yield return new WaitForSeconds(Random.Range(maneuverTime.x, maneuverTime.y));
             targetManeuver = 0;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  This script controls the enemies weapon system. How often they shoot 
 public class WeaponController : MonoBehaviour
 {
     public GameObject bullet;

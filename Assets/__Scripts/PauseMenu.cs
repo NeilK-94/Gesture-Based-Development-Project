@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.Windows.Speech;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
+//  This script listens out for keywords using the keywordRecognizer. It then activates or deactivates the pauseMenuUI 
+//  It also uses the scene manager to move to main menu if needed.
+//  No need to comment on most of this as it's all already been commented on it other scripts.
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaued = false;
@@ -18,8 +22,9 @@ public class PauseMenu : MonoBehaviour
         keywordActions.Add("pause", Pause);
         keywordActions.Add("resume", Resume);
         keywordActions.Add("quit", QuitGame);
+        keywordActions.Add("menu", Menu);
 
-        keywordRecognizer = new KeywordRecognizer(keywordActions.Keys.ToArray());   //  Put keys into an array. Just restart as of now
+        keywordRecognizer = new KeywordRecognizer(keywordActions.Keys.ToArray());
         keywordRecognizer.OnPhraseRecognized += OnKeywordsRecognized;
         keywordRecognizer.Start();
     }
@@ -38,14 +43,29 @@ public class PauseMenu : MonoBehaviour
     }
     public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPaued = false;
+        if (GameIsPaued)
+        {
+            pauseMenuUI.SetActive(false);
+            Time.timeScale = 1f;
+            GameIsPaued = false;
+        }
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quitting..");
-        Application.Quit();
+        if (GameIsPaued)
+        {
+            Debug.Log("Quitting..");
+            Application.Quit();
+        }
+    }
+
+    private void Menu()
+    {
+        if (GameIsPaued)
+        {
+            //  Move down the build index to the previous scene.
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 }

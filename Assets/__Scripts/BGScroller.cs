@@ -5,7 +5,7 @@ using UnityEngine;
 //  Background scroller
 public class BGScroller : MonoBehaviour
 {
-
+    //  Length of z axis
     private int zLength = 30;
     private float scrollSpeed = -1f;    //  '-' because we're going down the axis
 

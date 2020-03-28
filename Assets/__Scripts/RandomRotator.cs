@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  This script adds a random rotation to the asteroids to make it look as if they're perpetually flying through space
 public class RandomRotator : MonoBehaviour
 {
     public float tumble;

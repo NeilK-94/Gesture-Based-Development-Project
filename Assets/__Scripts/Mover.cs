@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//  This script moves whatever its attached to down the screen
 public class Mover : MonoBehaviour
 {
     public float speed;

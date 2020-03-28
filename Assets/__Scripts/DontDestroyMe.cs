@@ -13,11 +13,9 @@ public class DontDestroyMe : MonoBehaviour
 
     private void SetupSingleton()
     {
-        //  find object of type musicplayer
+        //  find object of type ThalmicHub
         //  if there is one, use that instance
         //  destroy the one just created
-        //  FindObjectOfType()
-
         if (FindObjectsOfType<ThalmicHub>().Length > 1)
         {
             Destroy(hub);

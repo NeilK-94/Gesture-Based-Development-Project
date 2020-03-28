@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //  Myo dependencies
-using LockingPolicy = Thalmic.Myo.LockingPolicy;
 using Pose = Thalmic.Myo.Pose;
-using UnlockType = Thalmic.Myo.UnlockType;
 using VibrationType = Thalmic.Myo.VibrationType;
 
 //  Make Boundary class visible in editor
@@ -34,8 +32,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //myo = GameObject.FindGameObjectWithTag("Player");
-
         rb = GetComponent<Rigidbody>();
         bulletClip = GetComponent<AudioSource>();
         myoArmband = myo.GetComponent<ThalmicMyo>();
@@ -60,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
         }
         /*
-        //  Keyboard controls
+        //  /////////////////////   Keyboard controls   /////////////////////////////////////
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -91,14 +87,19 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
+        //  If the current pose is fist and enough time has passed for nexr shot...
         if(myoArmband.pose == Pose.Fist && Time.time > nextFire)
         {
             Debug.Log("FIST BUMP!");
             nextFire = Time.time + fireRate;
             Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
             lastPose = Pose.Fist;
+            myoArmband.Vibrate(VibrationType.Short);
+
+            //  Play audio clip
             bulletClip.Play();
         }
+        /*  ///////////////  MOUSE CONTROLS  ///////////////////////////////////////////////////
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
@@ -106,5 +107,6 @@ public class PlayerController : MonoBehaviour
 
             bulletClip.Play();
         }
+        */
     }
 }

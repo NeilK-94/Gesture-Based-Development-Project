@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BGScroller">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Assets\__Scripts\BGScroller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyByBoundary">
+    <Position X="8.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\DestroyByBoundary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyByContact">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAACAEQAAAAAAAAAAAABAAAQAAAAAAAAIA=</HashCode>
+      <FileName>Assets\__Scripts\DestroyByContact.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyByTime">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\DestroyByTime.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DontDestroyMe">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\__Scripts\DontDestroyMe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EvasiveManeuver">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BgAEAKAAAiAAAAIEAAAAAABAABAAABAAAAQAgAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\EvasiveManeuver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameController">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQggDwAACAAIRgAABAIAAEgAAAECAEFAAAAAIAQEIA=</HashCode>
+      <FileName>Assets\__Scripts\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenu">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASgAAwAACAMAAAACBAAAKAgAAIACAQEABAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\MainMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Mover">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAAAAAAAAAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\Mover.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MusicPlayer">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\__Scripts\MusicPlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PauseMenu">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAgAAQAACAAAAAAAAAAAIAAAAAICAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\__Scripts\PauseMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Boundary">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAACAAAAAAAgAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerController">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQEEAAAAiIABAAEDBAAAEAAIAAAAQAEABAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\PlayerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RandomRotator">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\RandomRotator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WeaponController">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACIABAAAAAAAAEgAAAAAEAAAABAAAAAAAAA=</HashCode>
+      <FileName>Assets\__Scripts\WeaponController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
