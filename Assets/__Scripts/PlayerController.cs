@@ -15,8 +15,11 @@ public class Boundary
 
 public class PlayerController : MonoBehaviour
 {
+    //  Player move speed
     public float speed;
+    //  Player tilt when moving
     public float tilt;
+    //  Speed at which bullets fire
     public float fireRate;
     public GameObject bullet;
     public Transform bulletSpawn;
@@ -26,12 +29,12 @@ public class PlayerController : MonoBehaviour
 
     private ThalmicMyo myoArmband;
     private Rigidbody rb;
-    private Pose lastPose = Pose.Unknown;  //  Myo stores our poses. Set pose to Unknown initially.
     private AudioSource bulletClip;
     private float nextFire;
 
     void Start()
     {
+        //  Initialise objects in game
         rb = GetComponent<Rigidbody>();
         bulletClip = GetComponent<AudioSource>();
         myoArmband = myo.GetComponent<ThalmicMyo>();
@@ -49,7 +52,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Movement()
-    {
+    {   //  If myo armband is null, getcomponent thalmicMyo
         if(myoArmband == null)
         {
             myoArmband = myo.GetComponent<ThalmicMyo>();
@@ -74,6 +77,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = myoMovement * speed;
 
         //  Set constraints to avoid player moving out of screen
+        //  boundary values are just the length if the camer on the x and z axis
         rb.position = new Vector3
         (
                 Mathf.Clamp(rb.position.x, boundary.xMin, boundary.xMax),
@@ -92,8 +96,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("FIST BUMP!");
             nextFire = Time.time + fireRate;
+            //  Instantiate a bullet
             Instantiate(bullet, bulletSpawn.position, bulletSpawn.rotation);
-            lastPose = Pose.Fist;
+            //  Vibrate the armband
             myoArmband.Vibrate(VibrationType.Short);
 
             //  Play audio clip
