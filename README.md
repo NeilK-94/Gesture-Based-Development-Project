@@ -2,7 +2,8 @@
 **Neil Kyne**
 
 ###
-Youtube Demo: https://youtu.be/iuqyJ3Le2EY
+Demo Video: https://youtu.be/iuqyJ3Le2EY
+Project Rundown: https://youtu.be/f_0n4bXxWWE
 ### About the project
 This repository contains my submission for the Gesture Based UI Development Module. The repository contains a space shooter game made in Unity as well as a project write up and a README detailing the project specs and how to run it etc.
 
